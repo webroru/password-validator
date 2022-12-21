@@ -1,5 +1,5 @@
 import RuleInterface from './RuleInterface';
-import PasswordValidationError from "./PasswordValidationError";
+import PasswordValidationError from "../exceptions/PasswordValidationError";
 
 class Rule implements RuleInterface {
   constructor(

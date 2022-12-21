@@ -1,4 +1,4 @@
-import PasswordValidationError from '../src/rules/PasswordValidationError';
+import PasswordValidationError from '../src/exceptions/PasswordValidationError';
 import Rule from '../src/rules/Rule';
 
 describe('Rule', () => {
