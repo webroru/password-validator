@@ -4,6 +4,14 @@ import YamlRulesReader from '../src/rules/YamlRulesReader';
 describe('YamlRulesReader', () => {
   const yamlRulesReader = new YamlRulesReader();
 
+  test('defines parse()', () => {
+    expect(typeof yamlRulesReader['parse']).toBe('function');
+  });
+
+  test('defines createRule()', () => {
+    expect(typeof yamlRulesReader['createRule']).toBe('function');
+  });
+
   test('parse() returns valid yaml structure when called', () => {
     const content = `
       rules:
@@ -12,11 +20,11 @@ describe('YamlRulesReader', () => {
           negative: false
           message: Length is minimum five characters
     `;
-    expect(yamlRulesReader.parse(content)).toMatchObject({ rules: [{ regexp: '.*', negative: false, message: 'Length is minimum five characters' }] });
+    expect(yamlRulesReader['parse'](content)).toMatchObject({ rules: [{ regexp: '.*', negative: false, message: 'Length is minimum five characters' }] });
   });
 
   test('createRule() creates Rule object', () => {
     const yamlRule = { regexp: '.*', negative: false, message: 'test' };
-    expect(yamlRulesReader.createRule(yamlRule)).toBeInstanceOf(Rule);
+    expect(yamlRulesReader['createRule'](yamlRule)).toBeInstanceOf(Rule);
   });
 });

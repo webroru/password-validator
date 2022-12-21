@@ -16,11 +16,11 @@ class YamlRulesReader implements ConfigReaderInterface {
     return yaml.rules.map(this.createRule);
   }
 
-  parse(data: string): { rules: { regexp: string, negative: boolean, message: string }[] } {
+  private parse(data: string): { rules: { regexp: string, negative: boolean, message: string }[] } {
     return YAML.parse(data);
   }
 
-  createRule(yamlRule: { regexp: string, negative: boolean, message: string }): RuleInterface {
+  private createRule(yamlRule: { regexp: string, negative: boolean, message: string }): RuleInterface {
     return new Rule(new RegExp(yamlRule.regexp), yamlRule.message, yamlRule.negative);
   }
 }
