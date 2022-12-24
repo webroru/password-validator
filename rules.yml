@@ -1,17 +1,17 @@
 rules:
   -
-    regexp: [.]{5,}
+    regexp: '.{5,}'
     negative: false
     message: Length is minimum five characters
   -
-    regexp: \d
+    regexp: '\d'
     negative: false
     message: At least one digit is used
   -
-    regexp: (?:[A-Z]|[^a-z0-9])
+    regexp: '(?:[A-Z]|[^a-z0-9])'
     negative: false
     message: There is at least one upper-case character OR one special character [anything that is neither letter nor a number]
   -
-    regexp: (.)\1{2,}
+    regexp: '(.)\1{2,}'
     negative: true
     message: There are no more than two repeating consecutive characters (like 'bbb' – two are allowed, but not three or more)
