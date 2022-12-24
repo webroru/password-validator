@@ -21,7 +21,12 @@ class YamlRulesReader implements ConfigReaderInterface {
   }
 
   private createRule(yamlRule: { regexp: string, negative: boolean, message: string }): RuleInterface {
-    return new Rule(new RegExp(yamlRule.regexp), yamlRule.message, yamlRule.negative);
+    try {
+      const regExp = new RegExp(yamlRule.regexp);
+      return new Rule(regExp, yamlRule.message, yamlRule.negative);
+    } catch {
+      throw new InternalError(`${yamlRule.regexp} — is not a valid pattern`);
+    }
   }
 }
 

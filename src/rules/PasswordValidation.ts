@@ -1,6 +1,6 @@
-import PasswordValidationError from "../exceptions/PasswordValidationError";
-import RuleInterface from "./RuleInterface";
-import YamlRulesReader from "./YamlRulesReader";
+import PasswordValidationError from '../exceptions/PasswordValidationError';
+import RuleInterface from './RuleInterface';
+import YamlRulesReader from './YamlRulesReader';
 
 class PasswordValidation {
   private rules: RuleInterface[];
@@ -18,6 +18,8 @@ class PasswordValidation {
       } catch (e) {
         if (e instanceof PasswordValidationError) {
           errors.push(e.message);
+        } else {
+          throw e;
         }
       }
     });

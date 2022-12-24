@@ -1,3 +1,4 @@
+import InternalError from '../src/exceptions/InternalError';
 import Rule from '../src/rules/Rule';
 import YamlRulesReader from '../src/rules/YamlRulesReader';
 
@@ -26,5 +27,12 @@ describe('YamlRulesReader', () => {
   test('createRule() creates Rule object', () => {
     const yamlRule = { regexp: '.*', negative: false, message: 'test' };
     expect(yamlRulesReader['createRule'](yamlRule)).toBeInstanceOf(Rule);
+  });
+
+  test('createRule() throws InternalError when invalid regExp', () => {
+    const yamlRule = { regexp: '?', negative: false, message: 'test' };
+    expect(() => {
+      yamlRulesReader['createRule'](yamlRule);
+    }).toThrow(InternalError);
   });
 });
