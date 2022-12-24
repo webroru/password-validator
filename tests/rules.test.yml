@@ -1,0 +1,5 @@
+rules:
+  -
+    regexp: '.{5,}'
+    negative: false
+    message: Length is minimum five characters
