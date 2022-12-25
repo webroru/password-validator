@@ -1,6 +1,6 @@
-import InternalError from '../src/exceptions/InternalError';
-import Rule from '../src/rules/Rule';
-import YamlRulesReader from '../src/rules/YamlRulesReader';
+import InternalError from '../src/validation/exceptions/ConfigurationError';
+import Rule from '../src/validation/Rule/Rule';
+import YamlRulesReader from '../src/validation/YamlRulesReader';
 
 describe('YamlRulesReader', () => {
   const yamlRulesReader = new YamlRulesReader();

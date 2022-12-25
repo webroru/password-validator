@@ -1,12 +1,11 @@
-import PasswordValidationError from '../exceptions/PasswordValidationError';
-import RuleInterface from './RuleInterface';
-import YamlRulesReader from './YamlRulesReader';
+import ConfigReaderInterface from './ConfigReaderInterface';
+import ValidationError from './exceptions/ValidationError';
+import RuleInterface from './Rule/RuleInterface';
 
-class PasswordValidation {
+export default class Validation {
   private rules: RuleInterface[];
 
-  constructor(configPath: string) {
-    const yamlRulesReader = new YamlRulesReader();
+  constructor(yamlRulesReader: ConfigReaderInterface, configPath: string) {
     this.rules = yamlRulesReader.read(configPath)
   }
 
@@ -16,7 +15,7 @@ class PasswordValidation {
       try {
         rule.check(password);
       } catch (e) {
-        if (e instanceof PasswordValidationError) {
+        if (e instanceof ValidationError) {
           errors.push(e.message);
         } else {
           throw e;
@@ -27,5 +26,3 @@ class PasswordValidation {
     return errors;
   }
 }
-
-export default PasswordValidation;

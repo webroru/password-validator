@@ -1,5 +1,5 @@
-import PasswordValidationError from '../src/exceptions/PasswordValidationError';
-import Rule from '../src/rules/Rule';
+import ValidationError from '../src/validation/exceptions/ValidationError';
+import Rule from '../src/validation/Rule/Rule';
 
 describe('Rule', () => {
   const rule = new Rule(/[0-9]+/, 'This is not a number', false);
@@ -15,6 +15,6 @@ describe('Rule', () => {
   test("check() thows PasswordValidationError", () => {
     expect(() => {
       rule.check('abc');
-    }).toThrow(PasswordValidationError);
+    }).toThrow(ValidationError);
   });
 });
