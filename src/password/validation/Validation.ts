@@ -6,14 +6,14 @@ export default class Validation {
   private rules: RuleInterface[];
 
   constructor(yamlRulesReader: ConfigReaderInterface, configPath: string) {
-    this.rules = yamlRulesReader.read(configPath)
+    this.rules = yamlRulesReader.read(configPath);
   }
 
-  public validate(password: string): string[] {
+  public validate(string: string): string[] {
     const errors: string[] = [];
     this.rules.forEach((rule: RuleInterface) => {
       try {
-        rule.check(password);
+        rule.check(string);
       } catch (e) {
         if (e instanceof ValidationError) {
           errors.push(e.message);

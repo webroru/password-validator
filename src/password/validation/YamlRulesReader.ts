@@ -1,7 +1,7 @@
 import fs from 'fs';
 import YAML from 'yaml';
 import ConfigurationError from './exceptions/ConfigurationError';
-import ConfigReaderInterface from "./ConfigReaderInterface";
+import ConfigReaderInterface from './ConfigReaderInterface';
 import Rule from './Rule/Rule';
 import RuleInterface from './Rule/RuleInterface';
 
@@ -16,16 +16,24 @@ export default class YamlRulesReader implements ConfigReaderInterface {
     return yaml.rules.map(this.createRule);
   }
 
-  private parse(data: string): { rules: { regexp: string, negative: boolean, message: string }[] } {
+  private parse(data: string): {
+    rules: { regexp: string; negative: boolean; message: string }[];
+  } {
     return YAML.parse(data);
   }
 
-  private createRule(yamlRule: { regexp: string, negative: boolean, message: string }): RuleInterface {
+  private createRule(yamlRule: {
+    regexp: string;
+    negative: boolean;
+    message: string;
+  }): RuleInterface {
     try {
       const regExp = new RegExp(yamlRule.regexp);
       return new Rule(regExp, yamlRule.message, yamlRule.negative);
     } catch {
-      throw new ConfigurationError(`${yamlRule.regexp} — is not a valid pattern`);
+      throw new ConfigurationError(
+        `${yamlRule.regexp} — is not a valid pattern`,
+      );
     }
   }
 }

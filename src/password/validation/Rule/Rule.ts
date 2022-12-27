@@ -1,5 +1,5 @@
 import RuleInterface from './RuleInterface';
-import ValidationError from "../exceptions/ValidationError";
+import ValidationError from '../exceptions/ValidationError';
 
 export default class Rule implements RuleInterface {
   constructor(
@@ -10,7 +10,7 @@ export default class Rule implements RuleInterface {
 
   check(password: string): void {
     const test = this.regexp.test(password);
-    if (this.isNegative && test || !this.isNegative && !test) {
+    if ((this.isNegative && test) || (!this.isNegative && !test)) {
       throw new ValidationError(this.message);
     }
   }

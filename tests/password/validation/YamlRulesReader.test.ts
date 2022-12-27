@@ -1,6 +1,6 @@
-import InternalError from '../src/validation/exceptions/ConfigurationError';
-import Rule from '../src/validation/Rule/Rule';
-import YamlRulesReader from '../src/validation/YamlRulesReader';
+import InternalError from '../../../src/password/validation/exceptions/ConfigurationError';
+import Rule from '../../../src/password/validation/Rule/Rule';
+import YamlRulesReader from '../../../src/password/validation/YamlRulesReader';
 
 describe('YamlRulesReader', () => {
   const yamlRulesReader = new YamlRulesReader();
@@ -21,7 +21,15 @@ describe('YamlRulesReader', () => {
           negative: false
           message: Length is minimum five characters
     `;
-    expect(yamlRulesReader['parse'](content)).toMatchObject({ rules: [{ regexp: '.*', negative: false, message: 'Length is minimum five characters' }] });
+    expect(yamlRulesReader['parse'](content)).toMatchObject({
+      rules: [
+        {
+          regexp: '.*',
+          negative: false,
+          message: 'Length is minimum five characters',
+        },
+      ],
+    });
   });
 
   test('createRule() creates Rule object', () => {

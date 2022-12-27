@@ -1,5 +1,5 @@
-import ValidationError from '../src/validation/exceptions/ValidationError';
-import Rule from '../src/validation/Rule/Rule';
+import ValidationError from '../../../src/password/validation/exceptions/ValidationError';
+import Rule from '../../../src/password/validation/Rule/Rule';
 
 describe('Rule', () => {
   const rule = new Rule(/[0-9]+/, 'This is not a number', false);
@@ -8,11 +8,11 @@ describe('Rule', () => {
     expect(typeof rule.check).toBe('function');
   });
 
-  test("check() returns undefined when called", () => {
+  test('check() returns undefined when called', () => {
     expect(rule.check('123')).toBeUndefined();
   });
 
-  test("check() thows PasswordValidationError", () => {
+  test('check() thows PasswordValidationError', () => {
     expect(() => {
       rule.check('abc');
     }).toThrow(ValidationError);

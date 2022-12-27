@@ -8,17 +8,17 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
-    "start:dev": "nest start --watch",
-    "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./tests/password/jest-e2e.json"
+    "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
+    "start": "NODE_PATH=. nest start",
+    "start:dev": "NODE_PATH=. nest start --watch",
+    "start:debug": "NODE_PATH=. nest start --debug --watch",
+    "start:prod": "NODE_PATH=. node dist/main",
+    "lint": "eslint \"{src,apps,libs,tests}/**/*.ts\" --fix",
+    "test": "NODE_PATH=. jest",
+    "test:watch": "NODE_PATH=. jest --watch",
+    "test:cov": "NODE_PATH=. jest --coverage",
+    "test:debug": "NODE_PATH=. node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "NODE_PATH=. jest --config ./tests/password/jest-e2e.json"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
