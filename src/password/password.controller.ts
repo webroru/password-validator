@@ -9,7 +9,7 @@ import {
 import PasswordDto from './password.dto';
 import { PasswordService } from './password.service';
 
-@Controller('password')
+@Controller('passwords')
 export class PasswordController {
   constructor(private readonly passwordService: PasswordService) {}
 

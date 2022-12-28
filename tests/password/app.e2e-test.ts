@@ -17,7 +17,7 @@ describe('PasswordController (e2e)', () => {
 
   it('Send valid POST request', () => {
     return request(app.getHttpServer())
-      .post('/password')
+      .post('/passwords')
       .send({
         password: '12345!',
       })
@@ -26,7 +26,7 @@ describe('PasswordController (e2e)', () => {
 
   it('Send invalid POST request', () => {
     return request(app.getHttpServer())
-      .post('/password')
+      .post('/passwords')
       .send({
         password: '123',
       })
